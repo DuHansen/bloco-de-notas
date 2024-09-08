@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>bloco_de_notas</id>
+    <version>1.0.0</version>
+    <authors>Eduardo Hansen</authors>
+    <description>Anote enquanto usa outras telas</description>
+    <title>Bloco de Notas</title>
+    <!-- Outros campos opcionais -->
+  </metadata>
+</package>

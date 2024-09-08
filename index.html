@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloco de Notas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="titlebar">
+    <div>Bloco de Notas</div>
+    <div>
+      <span id="minimize">_</span>
+      <span id="fullscreen">[ ]</span>
+      <span id="close">X</span>
+    </div>
+  </div>
+  <textarea placeholder="Escreva suas anotações..."></textarea>
+      
+  <section id="section1" class="flex items-center justify-center h-screen bg-white">
+    <div class="container mx-auto p-6 rounded shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Minhas Tarefas</h2>
+      <input type="text" id="todo-input" placeholder="Adicione uma nova tarefa" class="w-full p-2 border border-gray-300 rounded mb-4">
+      <button id="add-button" class="w-full bg-green-500 text-white p-2 rounded mb-4">Adicionar</button>
+      <ul id="todo-list" class="list-none p-0"></ul>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('minimize').addEventListener('click', () => {
+      window.electron.minimizeWindow();
+    });
+    document.getElementById('fullscreen').addEventListener('click', () => {
+      window.electron.toggleFullScreen();
+    });
+    document.getElementById('close').addEventListener('click', () => {
+      window.electron.closeWindow();
+    });
+
+    // Função para adicionar tarefas
+    document.addEventListener('DOMContentLoaded', () => {
+      const todoInput = document.getElementById('todo-input');
+      const addButton = document.getElementById('add-button');
+      const todoList = document.getElementById('todo-list');
+
+      addButton.addEventListener('click', addTodo);
+
+      todoInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          addTodo();
+        }
+      });
+
+      function addTodo() {
+        const todoText = todoInput.value.trim();
+        if (todoText !== '') {
+          const li = document.createElement('li');
+          li.className = 'flex justify-between items-center p-2 border-b border-gray-300 rounded bg-gray-100 mb-2 shadow-md';
+
+          const span = document.createElement('span');
+          span.textContent = todoText;
+          span.className = 'flex-grow';
+
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'X';
+          deleteButton.className = 'bg-red-500 text-white p-2 rounded-full h-8 w-8 flex justify-center items-center text-center font-bold hover:bg-red-700 transition duration-200';
+          deleteButton.addEventListener('click', () => {
+            todoList.removeChild(li);
+          });
+
+          li.appendChild(span);
+          li.appendChild(deleteButton);
+          todoList.appendChild(li);
+          todoInput.value = '';
+          todoInput.focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

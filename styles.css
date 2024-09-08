@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Azul mais suave */
+}
+
+#titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00008B; /* Azul escuro */
+    color: white;
+    padding: 10px 20px;
+    -webkit-app-region: drag; /* Permite arrastar a janela */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#minimize, #fullscreen, #close {
+    cursor: pointer;
+    -webkit-app-region: no-drag; /* Impede arrastar ao clicar nos botões */
+    margin-left: 10px; /* Espaçamento entre os botões */
+    padding: 5px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+#minimize:hover, #fullscreen:hover, #close:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Efeito de hover */
+}
+
+textarea {
+    width: 100%;
+    height: calc(100% - 50px); /* Ajusta a altura para ocupar o restante do espaço */
+    border: none;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    resize: none; /* Impede o redimensionamento do textarea */
+    outline: none; /* Remove o outline padrão */
+}
+
+/* Estilo do botão de exclusão "X" */
+button {
+    cursor: pointer;
+}
+
+.bg-red-500 {
+    background-color: #f56565;
+}
+
+.bg-red-500:hover {
+    background-color: #e53e3e;
+}
+
+/* Estilos para os cards de tarefas */
+li {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
